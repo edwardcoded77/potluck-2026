@@ -8,8 +8,9 @@ import './App.css'
 function App() {
   const [meals, setMeals] = useState([])
 
-  const loadMeals = async () => {
+    const loadMeals = async () => {
     const { data, error } = await supabase.from("meals").select()
+    
     if (error) {
       console.log(error.message)
       return
