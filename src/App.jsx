@@ -18,23 +18,23 @@ function App() {
     
     console.log(data)
     setMeals(data)
-  }
+   }
 
 
-    const addMeal = async (event) => {
-    event.preventDefault()
-    const form = event.target
-    const meal = {
-      name: form.meal.value,
-      guest: form.guest.value,
-      servings: form.servings.value
-    }
+      const addMeal = async (event) => {
+      event.preventDefault()
+      const form = event.target
+      const meal = {
+        name: form.meal.value,
+        guest: form.guest.value,
+        servings: form.servings.value
+      }
     
-    const result = await supabase.from("meals").insert(meal)
-    if (result.error) {
-      console.log(result.error.message)
-      return
-    }
+      const result = await supabase.from("meals").insert(meal)
+      if (result.error) {
+        console.log(result.error.message)
+        return
+      }
     
     form.reset()
   }
