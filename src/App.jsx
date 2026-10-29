@@ -35,6 +35,7 @@ function App() {
       console.log(result.error.message)
       return
     }
+    
     form.reset()
   }
 
