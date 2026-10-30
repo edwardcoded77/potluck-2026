@@ -7,9 +7,10 @@ import './App.css'
 
 function App() {
   const [meals, setMeals] = useState([])
+  const [formError, setFormError] = useState("")
 
     const loadMeals = async () => {
-    const { data, error } = await supabase.from("meals").select()
+    const { data, error, reload } = await supabase.from("meals").select()
     
     if (error) {
       console.log(error.message)
@@ -18,7 +19,7 @@ function App() {
     
     console.log(data)
     setMeals(data)
-   }
+    }
 
 
       const addMeal = async (event) => {
@@ -27,34 +28,83 @@ function App() {
       const meal = {
         name: form.meal.value,
         guest: form.guest.value,
-        servings: form.servings.value
+        servings: Number(form.servings.value),
+        kind_of_dish: form.kind.value,
       }
     
-      const result = await supabase.from("meals").insert(meal)
+
+      const result = await supabase.from("meals").insert(meal).select()
+      
       if (result.error) {
-        console.log(result.error.message)
+        setFormError(result.error.message)
         return
       }
-    
+
+    setFormError('')  
+    console.log(result.data)
     form.reset()
   }
 
-   
+
+
+    // add two meals function
+    const addTwo = async () => {
+    const result = await supabase.from("meals").insert([
+
+    {name: "Rolls", guest: "Ola", servings: 1},
+    {name: "Ice Cream", guest: "Sola", servings: 1},
+  
+  ])
+
+  if (result.error) {
+    console.log(result.error.message)
+    return
+  }
+  await reload()
+
+  }
+
+ // Add up the servings of all meals
+  const total = meals.reduce((sum, meal) => {
+  return sum + meal.servings
+    }, 0)
+
+
+    // remove meal function
+    const deleteMeal = async (id) => {
+      const result = await supabase.from("meals").delete().eq("id", id)
+      if (result.error){
+        console.log(result.error.message)
+        return 
+      }
+        reload()
+    }
+  
 
   return (
     <div>
       <h1>Potluck</h1>
+      <p>Feeds {total}</p>
       <button onClick={loadMeals}>Load</button>
-        {meals.map((meal) => <MealCard key={meal.id} meal={meal} />)}
+        {meals.map((meal) => <MealCard key={meal.id} meal={meal} onDelete={deleteMeal} />)}
         <article>
           <form onSubmit={addMeal}>
-            <input name="meal" placeholder="Dish" />
-            <input name="guest" placeholder="Your name" />
-            <input name="servings" type="number" placeholder="Serves" />
-            <button>Add</button>
-          </form>
+            <input name="meal" placeholder="Dish" required />
+            <input name="guest" placeholder="Your name" required />
+            <input name="servings" type="number" placeholder="Serves" required/>
+              <select name="kind">
+                <option>Main</option>
+                <option>Side</option>
+                <option>Dessert</option>
+              </select>
+            <button className='addBtn'>Add A Meal</button> 
+          </form> 
+          <button onClick={addTwo}>Add 2 Meal</button>
+          <p>{formError}</p>
         </article>
     </div>
+            
+      
   )
 }
 
