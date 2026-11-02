@@ -4,9 +4,33 @@
   padding: 1rem;
   border: 2px solid #c9a227;
   border-radius: 8px;
-  background-color: #57806b;
+  /* background-color: #7c8057; */
+  background-color: #8d865d;
+}
+
+
+.card p {
+  color:rgb(255, 255, 255);
+  font-size: 1.2em;
 }
 
 .card h2 {
   margin-top: 0;
 }
+
+
+
+.meals {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); */
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch; 
+  margin-top: 8px;
+}
+
+.addBtn {
+margin-bottom: 1rem;
+} 
+
+
