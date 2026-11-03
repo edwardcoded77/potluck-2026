@@ -1,59 +1,74 @@
 # Potluck App
 
-## The Problem:
+## Project Description
 
-Organizing a potluck can be difficult when guests need to coordinate what food and drinks to bring. Without a central place to record contributions, it can be hard to keep track of meals, servings, drinks, and who is bringing them.
+Potluck is a React application that helps organize meals and drinks for a potluck gathering. Users can add, view, search, update, and delete meal and drink records.
 
-## The Plan:
+## Technologies Used
 
-Build a simple application where guests' meals and drinks can be recorded, viewed, updated, searched, and deleted. Store the information in a Supabase database so the records remain available.
+- React
+- JavaScript
+- Vite
+- Supabase (PostgreSQL)
+- Bun
+- Pico CSS
 
-### Data:
+## Database Structure
 
-Database: `Supabase`
+The application uses two Supabase tables:
 
-The application uses two tables:
+**Meals**
 
-**1. Meals Table**
+`id`, `created_at`, `name`, `guest`, `ingredients`, `servings`, `kind_of_dish`
 
-| ID | Name | Guest | Servings | Kind of Dish | Created At |
-|---|---|---|---:|---|---|
-| 1 | Pancakes | Tom | 2 | Main | Automatically generated |
-| 2 | Jollof Rice | Ayo | 5 | Main | Automatically generated |
-| 3 | Ice Cream | Sola | 1 | Dessert | Automatically generated |
+**Drinks**
 
-**2. Drinks Table**
+`id`, `created_at`, `drink_name`, `guest_name`, `serving_style`
 
-| ID | Drink Name | Guest Name | Serving Style | Created At |
-|---|---|---|---|---|
-| 1 | Coca-Cola | Tom | One Shot | Automatically generated |
-| 2 | Orange Juice | Ayo | Straight | Automatically generated |
-| 3 | Lemonade | Sola | Mixed with Ice | Automatically generated |
+## Features
 
+- Add and delete meals and drinks.
+- View total guests and servings.
+- Search meals by name.
+- Filter meals by guest.
+- Increase meal servings.
+- Update drink serving styles.
+- Display newest meals and limit results.
 
+## Setup Instructions
 
-### Sections
+1. Clone the repository:
 
-- A visitor sees the total number of guests and total servings.
-- A visitor sees meals submitted by guests.
-- A visitor sees drinks submitted by guests.
-- A visitor can view meals by guest.
-- A visitor can search for dishes.
-- A visitor can view a limited number of meals or the newest meals.
+   ```bash
+   git clone https://github.com/edwardcoded77/potluck-2026.git
+   ```
 
-### User Actions
+2. Open the project folder:
 
-- A visitor adds a meal with the dish name, guest name, servings, and type of dish.
-- A visitor adds a drink with its name, guest name, and serving style.
-- A visitor increases the servings of a meal.
-- A visitor updates the serving style of a drink.
-- A visitor searches for meals by name.
-- A visitor selects a guest to view their dishes.
-- A visitor deletes a meal or drink.
+   ```bash
+   cd potluck-2026
+   ```
 
+3. Install dependencies using Bun:
 
+   ```bash
+   bun install
+   ```
+
+4. Create a `.env` file in the project root with your Supabase credentials:
+
+   ```env
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+5. Start the development server:
+
+   ```bash
+   bun run dev
+   ```
 
 ## Links
 
 - **Live:** https://potluck-2026.vercel.app/
-- **Repository:** https://github.com/edwardcoded77/potluck-2026
+- **GitHub:** https://github.com/edwardcoded77/potluck-2026
