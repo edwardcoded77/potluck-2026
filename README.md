@@ -37,36 +37,28 @@ The application uses two Supabase tables:
 
 ## Setup Instructions
 
-1. Clone the repository:
+   ## Setup Instructions
 
-   ```bash
-   git clone https://github.com/edwardcoded77/potluck-2026.git
-   ```
-
-2. Open the project folder:
-
-   ```bash
-   cd potluck-2026
-   ```
-
-3. Install dependencies using Bun:
+1. Install dependencies:
 
    ```bash
    bun install
    ```
 
-4. Create a `.env` file in the project root with your Supabase credentials:
+2. Create a `.env` file in the project root and add your Supabase credentials:
 
    ```env
    VITE_SUPABASE_URL=your_supabase_project_url
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
-5. Start the development server:
+3. Start the development server:
 
    ```bash
    bun run dev
    ```
+
+4. Open the local URL displayed in your terminal.
 
 ## Links
 
